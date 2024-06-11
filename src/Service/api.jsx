@@ -5,12 +5,11 @@ const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
   .toISOString()
   .split("T")[0];
 const URL = import.meta.env.VITE_URL;
-const proxyURL = import.meta.env.VITE_PROXY_URL;
 
 export const getAllPosts = async () => {
   try {
     const response = await axios.get(
-      `${proxyURL}${URL}everything?q=india&from=${lastWeek}&to=${today}&language=en&sortBy=publishedAt&apiKey=${apiKey}`
+      `${URL}everything?q=india&from=${lastWeek}&to=${today}&language=en&sortBy=publishedAt&apiKey=${apiKey}`
     );
     return response;
   } catch (error) {
@@ -21,7 +20,7 @@ export const getAllPosts = async () => {
 export const getSearchPosts = async (search) => {
   try {
     const response = await axios.get(
-      `${proxyURL}${URL}everything?q=${search}&apiKey=${apiKey}`
+      `${URL}everything?q=${search}&apiKey=${apiKey}`
     );
     return response;
   } catch (error) {
