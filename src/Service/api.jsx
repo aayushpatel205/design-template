@@ -1,12 +1,10 @@
 import axios from "axios";
-import { useDataContext } from "../Context/DataContext";
-
-const apiKey = "f99eb2a2d0434783a63355a20441d3e1";
+const apiKey = import.meta.env.VITE_API_KEY;
 const today = new Date().toISOString().split("T")[0];
 const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
   .toISOString()
   .split("T")[0];
-const URL = "https://newsapi.org/v2/";
+const URL = import.meta.env.VITE_URL;
 
 export const getAllPosts = async () => {
   try {
@@ -22,7 +20,7 @@ export const getAllPosts = async () => {
 export const getSearchPosts = async (search) => {
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/everything?q=${search}&apiKey=f99eb2a2d0434783a63355a20441d3e1`
+      `${URL}everything?q=${search}&apiKey=${apiKey}`
     );
     return response;
   } catch (error) {
